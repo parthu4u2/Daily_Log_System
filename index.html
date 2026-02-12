@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
+    <meta name="description" content="Offline-first daily productivity tracker with scoring, streaks, and proof uploads." />
+    <title>Daily Log System</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="card">
+        <h1>📅 Daily Log System</h1>
+        <p class="date" id="todayDate"></p>
+        <div class="stats">
+          <p><strong>Score:</strong> <span id="scoreValue">0</span>/10</p>
+          <p><strong>Current Streak:</strong> <span id="streakValue">0</span> days</p>
+        </div>
+      </header>
+
+      <section class="card" id="dailyTasks" aria-label="Daily tasks">
+        <h2>Today's Tasks</h2>
+      </section>
+
+      <section class="card">
+        <h2>🔥 History</h2>
+        <p class="help">Green = completed day (10/10), yellow = partial, red = missed day (0/10).</p>
+        <ul id="historyList" class="history-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>📦 Data</h2>
+        <div class="button-row">
+          <button id="exportBtn" type="button">Export JSON Backup</button>
+          <button id="clearBtn" type="button" class="danger">Clear Today</button>
+        </div>
+      </section>
+    </main>
+
+    <template id="taskTemplate">
+      <article class="task">
+        <label class="task-head">
+          <input class="task-check" type="checkbox" />
+          <span class="task-title"></span>
+          <span class="task-points"></span>
+        </label>
+        <label class="upload-wrap">
+          <span>Upload proof image</span>
+          <input class="task-file" type="file" accept="image/*" capture="environment" />
+        </label>
+        <img class="preview" alt="Task proof preview" hidden />
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
